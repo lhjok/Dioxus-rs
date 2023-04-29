@@ -10,7 +10,6 @@ fn main() {
 
 fn App(cx: Scope) -> Element {
     cx.render(rsx!{
-        style { include_str!("./styles/main.css") }
         Router {
             Route { to: "/", Home {} }
             Route { to: "/login", Login {} }
