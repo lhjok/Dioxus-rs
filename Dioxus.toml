@@ -1,0 +1,32 @@
+[application]
+# 项目名称
+name = "Dioxus-rs"
+# 设置项目应用平台
+# desktop | web | mobile | ssr |
+default_platform = "web"
+# 构建静态文件目录
+out_dir = "dist"
+# 资源（公用）文件目录
+asset_dir = "assets"
+
+[web.app]
+# 网站标题
+title = "千鸟任务管理系统"
+
+[web.watcher]
+# 监视程序触发时重新生成(index.html)
+reload_html = true
+# 监视以下文件目录
+watch_path = ["src", "public"]
+
+# 导入静态资源到(Web)平台
+[web.resource]
+# 导入(CSS)文件
+style = ["./assets/styles/main.css"]
+# 导入(Javascript)文件
+script = []
+
+[web.resource.dev]
+# 仅限(Web)开发服务器
+# 导入(Javascript)文件
+script = []
