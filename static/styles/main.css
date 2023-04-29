@@ -26,3 +26,7 @@ nav li {
     float: right;
     padding: 10px;
 }
+
+a {
+    text-decoration: none;
+}

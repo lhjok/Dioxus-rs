@@ -6,7 +6,7 @@ name = "Dioxus-rs"
 default_platform = "web"
 # 构建静态文件目录
 out_dir = "dist"
-# 资源【公用】文件目录
+# 资源文件目录
 asset_dir = "static"
 
 [web.app]
@@ -14,19 +14,20 @@ asset_dir = "static"
 title = "千鸟任务管理系统"
 
 [web.watcher]
-# 监视程序触发时重新生成【index.html】
+# 文件监视程序
+# 触发时重新生成(index.html)
 reload_html = true
 # 监视以下文件目录
 watch_path = ["src", "static"]
 
-# 导入静态资源到【Web】平台
+# 导入静态资源
 [web.resource]
-# 导入【CSS】文件
+# 导入CSS文件
 style = ["./styles/main.css"]
-# 导入【Javascript】文件
+# 导入Javascript文件
 script = []
 
 [web.resource.dev]
-# 仅限【Web】开发服务器
-# 导入【Javascript】文件
+# 仅限于开发状态
+# 导入Javascript文件
 script = []
