@@ -1,0 +1,15 @@
+#footer {
+    height: 60px;
+    padding-left: 276px;
+    background-color: rgb(238, 241, 246);
+    margin: 0px;
+}
+
+#footer p {
+    color: #444;
+    font-size: 16px;
+    margin: 0 5px 0 0;
+}
+#footer p span {
+    color: red;
+}

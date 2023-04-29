@@ -1,0 +1,37 @@
+#aside {
+    position: fixed;
+    top: 60px;
+    left: 0px;
+    bottom: 0px;
+    width: 260px;
+    border-right: 1px solid #ccc;
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 9998;
+}
+
+#aside ul.list {
+    padding: 17px 0 10px 25px;
+    margin: 0;
+}
+
+#aside ul.list li {
+    margin-bottom: 10px;
+}
+
+#aside ul.list li a {
+    color: #444;
+    width: 83%;
+    height: 35px;
+    line-height: 35px;
+    background-color: rgb(252, 224, 218);
+    border-radius: 3px;
+    text-decoration: none;
+    padding-left: 10px;
+    display: block;
+}
+
+#aside ul.list li a:hover {
+    color: #666;
+    background-color: rgb(253, 235, 230);
+}
