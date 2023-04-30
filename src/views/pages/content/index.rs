@@ -5,7 +5,7 @@ pub fn Index(cx: Scope) -> Element {
     cx.render(rsx!{
         style { include_str!("./styles/index.css") }
         div {
-            id: "contentindex",
+            id: "admindex",
             h3 { "Index Module" }
             p { "页面正在建设当中..." }
         }

@@ -6,6 +6,7 @@ pub fn Home(cx: Scope) -> Element {
     cx.render(rsx!{
         style { include_str!("./styles/home.css") }
         div {
+            id: "home",
             ul {
                 li { Link { to: "/login", "Go Login!"} }
             }
