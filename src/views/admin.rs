@@ -1,10 +1,9 @@
 #![allow(non_snake_case)]
 use dioxus::prelude::*;
 use dioxus_router::{Redirect, use_route};
-use crate::views::Error;
 use super::pages::content::Index;
 use super::pages::{
-    Aside, Footer, Header, Content
+    Aside, Footer, Header, Content, Error
 };
 
 pub fn Admin(cx: Scope) -> Element {

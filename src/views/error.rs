@@ -9,7 +9,7 @@ pub fn Error(cx: Scope) -> Element {
             id: "error",
             h3 { "404 Error" }
             p { "您访问的页面已经不存在了..." }
-            Link { to: "/admin/index", "返回首页" }
+            Link { to: "/", "返回首页" }
         }
     })
 }

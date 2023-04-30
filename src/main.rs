@@ -15,7 +15,8 @@ fn App(cx: Scope) -> Element {
             Route { to: "/login", Login {} }
             Route { to: "/admin", Redirect { to: "/admin/index" } }
             Route { to: "/admin/:route", Admin {} }
-            Route { to: "", Error {} }
+            Route { to: "/404", Error {} }
+            Redirect { from: "", to: "/404" }
         }
     })
 }
