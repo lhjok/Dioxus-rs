@@ -9,6 +9,7 @@ pub fn Home(cx: Scope) -> Element {
             id: "home",
             ul {
                 li { Link { to: "/login", "Go Login!"} }
+                li { Link { to: "/home", "Go Home!"} }
             }
         }
     })
