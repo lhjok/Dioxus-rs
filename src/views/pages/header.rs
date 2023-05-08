@@ -4,7 +4,10 @@ use dioxus_router::Link;
 
 pub fn Header(cx: Scope) -> Element {
     cx.render(rsx!{
-        style { include_str!("./styles/header.css") }
+        style {
+            r#type: "text/css",
+            include_str!("./styles/header.css")
+        }
         div {
             id: "header",
             div {

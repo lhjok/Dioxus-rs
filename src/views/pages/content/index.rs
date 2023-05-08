@@ -3,7 +3,10 @@ use dioxus::prelude::*;
 
 pub fn Index(cx: Scope) -> Element {
     cx.render(rsx!{
-        style { include_str!("./styles/index.css") }
+        style {
+            r#type: "text/css",
+            include_str!("./styles/index.css")
+        }
         div {
             id: "admindex",
             h3 { "Index Module" }

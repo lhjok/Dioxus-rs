@@ -4,7 +4,10 @@ use dioxus_router::Link;
 
 pub fn Login(cx: Scope) -> Element {
     cx.render(rsx!{
-        style { include_str!("./styles/login.css") }
+        style {
+            r#type: "text/css",
+            include_str!("./styles/login.css")
+        }
         div {
             id: "login",
             ul {

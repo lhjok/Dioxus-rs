@@ -23,7 +23,10 @@ watch_path = ["src", "static"]
 # 导入静态资源
 [web.resource]
 # 导入CSS文件
-style = ["./styles/main.css"]
+style = [
+"./styles/main.css",
+"./styles/swiper.min.css"
+]
 # 导入Javascript文件
 script = []
 

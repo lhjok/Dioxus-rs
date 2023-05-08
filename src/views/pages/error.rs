@@ -4,7 +4,10 @@ use dioxus_router::Link;
 
 pub fn Error(cx: Scope) -> Element {
     cx.render(rsx!{
-        style { include_str!("./styles/error.css") }
+        style {
+            r#type: "text/css",
+            include_str!("./styles/error.css")
+        }
         div {
             id: "adminerr",
             h3 { "404 Error" }
