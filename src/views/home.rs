@@ -3,7 +3,8 @@ use dioxus::prelude::*;
 use wasm_bindgen::prelude::*;
 use dioxus_router::Link;
 
-#[wasm_bindgen(module="/static/scripts/user-module/home.js")]
+#[wasm_bindgen(module="/static\
+/scripts/user-module/home.js")]
 extern {
     fn swiperInit();
 }
@@ -20,44 +21,46 @@ pub fn Home(cx: Scope) -> Element {
     });
 
     cx.render(rsx!{
-        style {
-            r#type: "text/css",
-            include_str!("./styles/home.css")
-        }
         div {
             id: "home",
             header {
-                class: "header",
+                class: "absolute w-full h-16 z-50 bg-white/20 shadow-2xl",
                 div {
-                    class: "header-row",
+                    class: "flex flex-row",
                     div {
-                        class: "header-logo",
-                        img { src: "./images/logo.png" }
+                        class: "basis-72 ml-6",
+                        img { alt: "Logo", src: "./images/logo.png" }
                     }
                     div {
-                        class: "header-right",
+                        class: "basis-60 ml-auto py-3",
                         button {
-                            class: "header-button",
+                            class: "mBtn-primary mx-4",
                             Link { to: "/home", "注册用户" }
                         }
                         button {
-                            class: "header-button",
+                            class: "mBtn-primary",
                             Link { to: "/login", "用户登录" }
                         }
                     }
                 }
             }
             div {
-                class: "swiper",
+                class: "swiper w-full",
                 div {
                     class: "swiper-wrapper",
                     div {
                         class: "swiper-slide",
-                        img { src: "./images/poster01.jpg" }
+                        img { 
+                            alt: "Poster01",
+                            src: "./images/poster01.jpg"
+                        }
                     }
                     div {
                         class: "swiper-slide",
-                        img { src: "./images/poster02.jpg" }
+                        img {
+                            alt: "Poster02",
+                            src: "./images/poster02.jpg"
+                        }
                     }
                 }
                 div { class: "swiper-pagination" }

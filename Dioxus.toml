@@ -24,8 +24,8 @@ watch_path = ["src", "static"]
 [web.resource]
 # 导入CSS文件
 style = [
-"./styles/main.css",
-"./styles/swiper.min.css"
+"./styles/public/swiper.min.css",
+"./styles/public/tailwind.css",
 ]
 # 导入Javascript文件
 script = []
