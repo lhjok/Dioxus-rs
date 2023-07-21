@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .mBtn-primary {
+        @apply bg-indigo-500 px-4 py-2 text-sm
+        rounded-md border text-white hover:border-white
+        border-indigo-500 active:scale-95 transition-all;
+    }
+}
