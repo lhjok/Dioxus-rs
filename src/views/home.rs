@@ -15,7 +15,6 @@ pub fn swiper_init() {
 }
 
 pub fn Home(cx: Scope) -> Element {
-
     use_effect(cx, (), |()| async move {
         swiper_init();
     });
@@ -29,7 +28,7 @@ pub fn Home(cx: Scope) -> Element {
                     class: "flex flex-row",
                     div {
                         class: "basis-72 ml-6",
-                        img { alt: "Logo", src: "./images/logo.png" }
+                        img { alt: "Logo", src: "./static/images/logo.png" }
                     }
                     div {
                         class: "basis-60 ml-auto py-3",
@@ -52,14 +51,14 @@ pub fn Home(cx: Scope) -> Element {
                         class: "swiper-slide",
                         img { 
                             alt: "Poster01",
-                            src: "./images/poster01.jpg"
+                            src: "./static/images/poster01.jpg"
                         }
                     }
                     div {
                         class: "swiper-slide",
                         img {
                             alt: "Poster02",
-                            src: "./images/poster02.jpg"
+                            src: "./static/images/poster02.jpg"
                         }
                     }
                 }

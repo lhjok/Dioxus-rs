@@ -1,9 +1,9 @@
 ## 前端构建（Rust + Dioxus）
-#### 安装Dioxus开发工具
+#### 1、如何在调试模式下运行
 ```sh
-cargo install dioxus-cli
+trunk serve
 ```
-#### 在调试模式下运行
+#### 2、如何在发布模式下构建
 ```sh
-dioxus serve --hot-reload
+trunk build --release
 ```

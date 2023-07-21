@@ -10,10 +10,6 @@ pub struct Props<'a> {
 
 pub fn Content<'a>(cx: Scope<'a, Props<'a>>) -> Element {
     cx.render(rsx!{
-        style {
-            r#type: "text/css",
-            include_str!("./styles/mod.css")
-        }
         div {
             id: "content",
             &cx.props.children

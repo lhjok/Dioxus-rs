@@ -4,10 +4,6 @@ use dioxus_router::Link;
 
 pub fn Aside(cx: Scope) -> Element {
     cx.render(rsx!{
-        style {
-            r#type: "text/css",
-            include_str!("./styles/aside.css")
-        }
         div {
             id: "aside",
             ul {

@@ -3,10 +3,6 @@ use dioxus::prelude::*;
 
 pub fn Footer(cx: Scope) -> Element {
     cx.render(rsx!{
-        style {
-            r#type: "text/css",
-            include_str!("./styles/footer.css")
-        }
         div {
             id: "footer",
             p {"千鸟科技 - 瑞金市千鸟网络科技有限公司 CopyRight 2017-2020 - "
