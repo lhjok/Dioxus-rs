@@ -3,15 +3,15 @@ use dioxus::prelude::*;
 use wasm_bindgen::prelude::*;
 use dioxus_router::Link;
 
-#[wasm_bindgen(module="/static\
-/scripts/user-module/home.js")]
+#[wasm_bindgen(module="\
+/static/scripts/home.js")]
 extern {
     fn swiperInit();
 }
 
 #[wasm_bindgen]
 pub fn swiper_init() {
-    return swiperInit();
+    swiperInit()
 }
 
 pub fn Home(cx: Scope) -> Element {
