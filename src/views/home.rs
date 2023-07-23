@@ -11,7 +11,7 @@ extern {
 
 #[wasm_bindgen]
 pub fn swiper_init() {
-    swiperInit()
+    swiperInit();
 }
 
 pub fn Home(cx: Scope) -> Element {

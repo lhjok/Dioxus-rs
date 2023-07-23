@@ -2,6 +2,7 @@
 use dioxus::prelude::*;
 use wasm_bindgen::prelude::*;
 use dioxus_router::Link;
+use dioxus_web::use_eval;
 use web_sys::console;
 
 #[wasm_bindgen(module=
@@ -12,10 +13,14 @@ extern {
 
 #[wasm_bindgen]
 pub fn init_elements() {
-    init_te()
+    init_te();
 }
 
 pub fn Login(cx: Scope) -> Element {
+
+    let eval = use_eval(&cx);
+    eval("console.log('Eval from login.rs')");
+
     use_effect(cx, (), |()| async move {
         init_elements();
     });
@@ -33,19 +38,7 @@ pub fn Login(cx: Scope) -> Element {
                 button {
                     r#type: "button",
                     id: "dropdownMenuButton1",
-                    class:
-                    "flex items-center whitespace-nowrap rounded \
-                     bg-primary px-6 pb-2 pt-2.5 text-xs font-medium \
-                     uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] \
-                     transition duration-150 ease-in-out hover:bg-primary-600 \
-                     hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] \
-                     focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] \
-                     focus:outline-none focus:ring-0 active:bg-primary-700 \
-                     active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] \
-                     motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] \
-                     dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] \
-                     dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] \
-                     dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]",
+                    class: "flex mBtn-secondary",
                     "data-te-dropdown-toggle-ref": "",
                     "aria-expanded": "false",
                     "data-te-ripple-init": "",
@@ -59,9 +52,9 @@ pub fn Login(cx: Scope) -> Element {
                             "viewBox": "0 0 20 20",
                             xmlns: "http://www.w3.org/2000/svg",
                             path {
+                                d: "M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 \
+                                    1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z",
                                 "fill-rule": "evenodd",
-                                d: "M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 \
-                                    0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z",
                                 "clip-rule": "evenodd"
                             }
                         }
@@ -70,13 +63,13 @@ pub fn Login(cx: Scope) -> Element {
                 ul {
                     "data-te-dropdown-menu-ref": "",
                     "aria-labelledby": "dropdownMenuButton1",
-                    class: "ul-menu hidden overflow-hidden dark:bg-neutral-700 [&[data-te-dropdown-show]]:block",
+                    class: "ul-menu [&[data-te-dropdown-show]]:block",
                     li {
-                        class: "li-menu dark:text-neutral-200 dark:hover:bg-neutral-600",
+                        class: "li-menu",
                         Link { to: "/", "Go Home!" }
                     }
                     li {
-                        class: "li-menu dark:text-neutral-200 dark:hover:bg-neutral-600",
+                        class: "li-menu",
                         Link { to: "/admin", "Go Admin!" }
                     }
                 }
