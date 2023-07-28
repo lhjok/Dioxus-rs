@@ -33,11 +33,11 @@ pub fn Home(cx: Scope) -> Element {
                     div {
                         class: "basis-60 ml-auto py-3",
                         button {
-                            class: "mBtn-primary mx-4",
+                            class: "btn-primary mx-4",
                             Link { to: "/home", "注册用户" }
                         }
                         button {
-                            class: "mBtn-primary",
+                            class: "btn-primary",
                             Link { to: "/login", "用户登录" }
                         }
                     }
