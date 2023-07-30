@@ -1,7 +1,7 @@
 // import Swiper from 'swiper/bundle';
 import Swiper from '/node_modules/swiper/swiper-bundle.min.mjs';
 
-export function swiperInit() {
+export function swiper_init() {
     return new Swiper ('.swiper', {
         direction: 'horizontal',
         autoplay: true,

@@ -6,12 +6,8 @@ use dioxus_router::Link;
 #[wasm_bindgen(module="\
 /static/scripts/home.js")]
 extern {
-    fn swiperInit();
-}
-
-#[wasm_bindgen]
-pub fn swiper_init() {
-    swiperInit();
+    #[wasm_bindgen]
+    fn swiper_init();
 }
 
 pub fn Home(cx: Scope) -> Element {

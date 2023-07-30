@@ -7,12 +7,8 @@ use web_sys::console;
 #[wasm_bindgen(module=
 "/static/scripts/login.js")]
 extern {
-    fn init_te();
-}
-
-#[wasm_bindgen]
-pub fn init_elements() {
-    init_te();
+    #[wasm_bindgen]
+    fn init_elements();
 }
 
 pub fn Login(cx: Scope) -> Element {
@@ -21,7 +17,6 @@ pub fn Login(cx: Scope) -> Element {
 
     // 不带参数(空元组)，挂载组件后调用一次
     use_effect(cx, (), |()| async move {
-        console::log_1(&"Login Modules".into());
         init_elements();
     });
 
