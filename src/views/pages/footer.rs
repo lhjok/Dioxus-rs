@@ -2,7 +2,7 @@
 use dioxus::prelude::*;
 
 pub fn Footer(cx: Scope) -> Element {
-    cx.render(rsx!{
+    render! {
         div {
             id: "footer",
             p {"千鸟科技 - 瑞金市千鸟网络科技有限公司 CopyRight 2017-2020 - "
@@ -10,5 +10,5 @@ pub fn Footer(cx: Scope) -> Element {
                span {"软著登字第8888888号"}
             }
         }
-    })
+    }
 }

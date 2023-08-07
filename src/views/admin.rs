@@ -1,30 +1,18 @@
 #![allow(non_snake_case)]
 use dioxus::prelude::*;
-use dioxus_router::{Redirect, use_route};
-use super::pages::content::Index;
+use dioxus_router::prelude::*;
+use crate::route::Route;
 use super::pages::{
-    Aside, Footer, Header, Content, Error
+    Aside, Footer, Header, Content
 };
 
 pub fn Admin(cx: Scope) -> Element {
-    let route = use_route(&cx);
-    cx.render(rsx!{
+    render! {
         Header {}
         Aside {}
         Content {
-            match route.segment("route") {
-                Some(val) => match val {
-                    "index" => rsx!{ Index {} },
-                    "404" => rsx!{ Error {} },
-                    _ => rsx!{
-                        Redirect { to: "/admin/404" }
-                    }
-                },
-                None => rsx!{
-                    Redirect { to: "/admin/404" }
-                }
-            }
+            Outlet::<Route> {}
         }
         Footer {}
-    })
+    }
 }

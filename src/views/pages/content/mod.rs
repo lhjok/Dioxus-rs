@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 pub mod index;
-pub use self::index::Index;
+pub use self::index::AdminIndex;
 use dioxus::prelude::*;
 
 #[derive(Props)]
@@ -9,10 +9,10 @@ pub struct Props<'a> {
 }
 
 pub fn Content<'a>(cx: Scope<'a, Props<'a>>) -> Element {
-    cx.render(rsx!{
+    render! {
         div {
             id: "content",
             &cx.props.children
         }
-    })
+    }
 }

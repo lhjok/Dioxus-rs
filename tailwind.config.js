@@ -5,15 +5,10 @@ module.exports = {
 		"./src/**/*.rs",
 		"./index.html",
 		"./src/**/*.html",
-		"./src/**/*.css",
-		"./node_modules/flowbite/**/*.js",
-		"./node_modules/tw-elements/dist/js/**/*.js"
+		"./src/**/*.css"
 	],
 	darkMode: 'class',
 	theme: {},
 	variants: {},
-	plugins: [
-		require('flowbite/plugin'),
-		require("tw-elements/dist/plugin.cjs")
-	],
+	plugins: [],
 };
