@@ -14,7 +14,6 @@ let init = {
     }
 };
 export { Swiper, init };
-
 // 方法二；导出实例化函数，返回Swiper类型。
 export function newSwiper() {
     return new Swiper ('.swiper', {

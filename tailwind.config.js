@@ -5,10 +5,14 @@ module.exports = {
 		"./src/**/*.rs",
 		"./index.html",
 		"./src/**/*.html",
-		"./src/**/*.css"
+		"./src/**/*.css",
+		"./static/scripts/*.js",
+		"./node_modules/tw-elements/dist/js/**/*.js"
 	],
 	darkMode: 'class',
 	theme: {},
 	variants: {},
-	plugins: [],
+	plugins: [
+		require("tw-elements/dist/plugin.cjs")
+	],
 };

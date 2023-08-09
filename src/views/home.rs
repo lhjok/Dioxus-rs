@@ -58,7 +58,7 @@ pub fn Home(cx: Scope) -> Element {
                         class: "basis-60 ml-auto py-3",
                         button {
                             class: "btn-primary mx-4",
-                            Link { to: Route::Home {}, "注册用户" }
+                            Link { to: Route::Wrong {}, "注册用户" }
                         }
                         button {
                             class: "btn-primary",
