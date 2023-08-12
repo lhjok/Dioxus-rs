@@ -7,37 +7,55 @@ use web_sys::Element as WebSysElement;
 use gloo::events::EventListener;
 use gloo_utils::document;
 
-#[wasm_bindgen(module=
-"/static/scripts/elements.js")]
+#[wasm_bindgen(module="/node_modules\
+/tw-elements/dist/js/tw-elements.es.min.js")]
 extern {
     type Input;
     #[wasm_bindgen(constructor)]
     fn new(el: &WebSysElement) -> Input;
+    // #[wasm_bindgen(method)]
+    // fn update(this: &Input);
+
+    type Dropdown;
+    #[wasm_bindgen(constructor)]
+    fn new(el: &WebSysElement) -> Dropdown;
     #[wasm_bindgen(method)]
-    fn update(this: &Input);
-    
-    // #[wasm_bindgen(js_name= initInput)]
-    // fn init_input(id: &str);
-    // #[wasm_bindgen(js_name= initDropdown)]
-    // fn init_dropdown(id: &str);
+    fn toggle(this: &Dropdown);
 }
 
-fn init_input(id: &str) {
-    let trigger = document().query_selector_all(id).unwrap();
+fn init_input(id: &str) -> Result<Vec<(WebSysElement, Input)>, JsValue> {
+    let trigger = document().query_selector_all(id)?;
+    let mut inputs: Vec<(WebSysElement, Input)> = Vec::new();
     for i in 0..trigger.length() {
         let element = trigger.item(i).unwrap().unchecked_into();
         let input = Input::new(&element);
-        let _event = EventListener::new(&element, "click", move |event| {
-            event.prevent_default();
-			input.update();
-		});
+        inputs.push((element, input));
     }
+    Ok(inputs)
+}
+
+fn init_dropdown(id: &str) -> Result<Vec<(WebSysElement, Dropdown)>, JsValue> {
+    let trigger = document().query_selector_all(id)?;
+    let mut dropdowns: Vec<(WebSysElement, Dropdown)> = Vec::new();
+    for i in 0..trigger.length() {
+        let element = trigger.item(i).unwrap().unchecked_into();
+        let dropdown = Dropdown::new(&element);
+        dropdowns.push((element, dropdown));
+    }
+    Ok(dropdowns)
 }
 
 pub fn Login(cx: Scope) -> Element {
     use_effect(cx, (), |()| async move {
-        init_input("[data-te-input-wrapper-init]");
-        // init_dropdown("[data-te-dropdown-toggle-ref]");
+        let _ = init_input("[data-te-input-wrapper-init]").unwrap();
+        let dropdowns = init_dropdown("[data-te-dropdown-toggle-ref]").unwrap();
+        for (element, dropdown) in dropdowns.into_iter() {
+            let event = EventListener::new(&element, "click", move |event| {
+                event.prevent_default();
+			    dropdown.toggle();
+		    });
+            event.forget();
+        }
     });
     render! {
         section {
@@ -128,10 +146,46 @@ pub fn Login(cx: Scope) -> Element {
                                 style: "background-color: #3b5998",
                                 Link { to: Route::Home {}, "注册用户" }
                             }
-                            button {
-                                class: "flex w-full items-center justify-center btn-secondary",
-                                style: "background-color: #55acee",
-                                Link { to: Route::Home {}, "返回首页" }
+                            div {
+                                class: "relative",
+                                "data-te-dropdown-ref": "",
+                                button {
+                                    r#type: "button",
+                                    id: "dropdownMenuButton1",
+                                    "data-te-dropdown-toggle-ref": "",
+                                    "aria-expanded": "false",
+                                    class: "flex w-full items-center justify-center btn-secondary",
+                                    style: "background-color: #55acee",
+                                    "导航菜单",
+                                    span {
+                                        class: "ml-2 w-2",
+                                        svg {
+                                            class: "h-5 w-5",
+                                            fill: "currentColor",
+                                            "viewBox": "0 0 20 20",
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            path {
+                                                d: "M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 \
+                                                    1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z",
+                                                "fill-rule": "evenodd",
+                                                "clip-rule": "evenodd"
+                                            }
+                                        }
+                                    }
+                                }
+                                ul {
+                                    "data-te-dropdown-menu-ref": "",
+                                    "aria-labelledby": "dropdownMenuButton1",
+                                    class: "ul-menu w-full [&[data-te-dropdown-show]]:block",
+                                    li {
+                                        class: "li-menu text-center",
+                                        Link { to: Route::Home {}, "返回首页" }
+                                    }
+                                    li {
+                                        class: "li-menu text-center",
+                                        Link { to: Route::AdminIndex {}, "后台管理" }
+                                    }
+                                }
                             }
                         }
                     }

@@ -3,19 +3,14 @@ use dioxus::prelude::*;
 use dioxus_router::prelude::*;
 use wasm_bindgen::prelude::*;
 use crate::route::Route;
+use js_sys::JSON;
 use std::rc::Rc;
 
-#[wasm_bindgen(module=
-"/static/scripts/swiper.js")]
+#[wasm_bindgen(module="/static/scripts\
+/swiper-bundle.esm.browser.min.js")]
 extern {
-    // 导入inti实例对象
-    #[wasm_bindgen(js_name= init)]
-    static INIT: JsValue;
     // 导出Swiper类型
     type Swiper;
-    // 创建Swiper实例(函数)
-    #[wasm_bindgen(js_name= newSwiper)]
-    fn new_swiper() -> Swiper;
     // 创建Swiper实例(构造函数)
     #[wasm_bindgen(constructor)]
     fn new(id: &str, init: &JsValue) -> Swiper;
@@ -28,15 +23,27 @@ extern {
 }
 
 pub fn Home(cx: Scope) -> Element {
-    // let swiper= Rc::new(new_swiper());   // 方法一；实例化(函数)
-    let swiper= Rc::new(Swiper::new(".swiper", &INIT));   // 方法二；实例化(构造函数)
-    let listener= Rc::clone(&swiper);
-    let start= Rc::clone(&swiper);
-
+    // 解析Json格式到JsValue对象
+    let init = JSON::parse(r#"{
+        "init": false,
+        "direction": "horizontal",
+        "pagination": {
+            "el": ".swiper-pagination"
+        },
+        "navigation": {
+            "nextEl": ".swiper-button-next",
+            "prevEl": ".swiper-button-prev"
+        }
+    }"#).unwrap();
+    // 实例化(构造函数)
+    let swiper = Rc::new(Swiper::new(".swiper", &init));
+    let listener = Rc::clone(&swiper);
+    let start = Rc::clone(&swiper);
+    // 挂载组件时调用一次。
     use_effect(cx, (), |()| async move {
         start.init();
     });
-
+    // 卸载组件时调用一次。
     use_on_unmount(cx, move || {
         listener.detach_events();
     });
@@ -52,7 +59,8 @@ pub fn Home(cx: Scope) -> Element {
                         class: "basis-72 ml-6",
                         img {
                             alt: "Logo",
-                            src: "./static/images/logo.png" }
+                            src: "./static/images/logo.png"
+                        }
                     }
                     div {
                         class: "basis-60 ml-auto py-3",

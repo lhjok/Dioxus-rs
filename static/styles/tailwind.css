@@ -40,7 +40,7 @@
         disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-600;
     }
     .li-menu a {
-        @apply block px-4 py-2 pl-5 pr-20 w-full;
+        @apply block py-2 px-5 w-full;
     }
     .m-input {
         @apply block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]
