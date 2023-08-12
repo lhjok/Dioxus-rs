@@ -50,8 +50,8 @@ pub fn Login(cx: Scope) -> Element {
         let _ = init_input("[data-te-input-wrapper-init]").unwrap();
         let dropdowns = init_dropdown("[data-te-dropdown-toggle-ref]").unwrap();
         for (element, dropdown) in dropdowns.into_iter() {
-            let event = EventListener::new(&element, "click", move |event| {
-                event.prevent_default();
+            let event = EventListener::new(&element, "click", move |_event| {
+                // event.prevent_default();
 			    dropdown.toggle();
 		    });
             event.forget();
