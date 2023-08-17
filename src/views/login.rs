@@ -13,25 +13,12 @@ extern {
     type Input;
     #[wasm_bindgen(constructor)]
     fn new(el: &WebSysElement) -> Input;
-    // #[wasm_bindgen(method)]
-    // fn update(this: &Input);
 
     type Dropdown;
     #[wasm_bindgen(constructor)]
     fn new(el: &WebSysElement) -> Dropdown;
     #[wasm_bindgen(method)]
     fn toggle(this: &Dropdown);
-}
-
-fn init_input(id: &str) -> Result<Vec<(WebSysElement, Input)>, JsValue> {
-    let trigger = document().query_selector_all(id)?;
-    let mut inputs: Vec<(WebSysElement, Input)> = Vec::new();
-    for i in 0..trigger.length() {
-        let element = trigger.item(i).unwrap().unchecked_into();
-        let input = Input::new(&element);
-        inputs.push((element, input));
-    }
-    Ok(inputs)
 }
 
 fn init_dropdown(id: &str) -> Result<Vec<(WebSysElement, Dropdown)>, JsValue> {
@@ -47,7 +34,10 @@ fn init_dropdown(id: &str) -> Result<Vec<(WebSysElement, Dropdown)>, JsValue> {
 
 pub fn Login(cx: Scope) -> Element {
     use_effect(cx, (), |()| async move {
-        let _ = init_input("[data-te-input-wrapper-init]").unwrap();
+        // 初始化Input组件
+        let _name = Input::new(&document().get_element_by_id("inputName").unwrap());
+        let _pass = Input::new(&document().get_element_by_id("inputPass").unwrap());
+        // 初始化dropdown组件
         let dropdowns = init_dropdown("[data-te-dropdown-toggle-ref]").unwrap();
         for (element, dropdown) in dropdowns.into_iter() {
             let event = EventListener::new(&element, "click", move |_event| {
@@ -57,6 +47,10 @@ pub fn Login(cx: Scope) -> Element {
             event.forget();
         }
     });
+    // 卸载组件时调用一次。
+    // use_on_unmount(cx, move || {
+
+    // });
     render! {
         section {
             class: "h-screen",
@@ -76,6 +70,7 @@ pub fn Login(cx: Scope) -> Element {
                         class: "md:w-8/12 lg:ml-6 lg:w-5/12",
                         form {
                             div {
+                                id: "inputName",
                                 class: "relative mb-6",
                                 "data-te-input-wrapper-init": "",
                                 input {
@@ -91,6 +86,7 @@ pub fn Login(cx: Scope) -> Element {
                                 }
                             }
                             div {
+                                id: "inputPass",
                                 class: "relative mb-6",
                                 "data-te-input-wrapper-init": "",
                                 input {
